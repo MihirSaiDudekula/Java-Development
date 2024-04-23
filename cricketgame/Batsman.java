@@ -1,9 +1,7 @@
 package cricketgame;
 
-class Batsman {
-    private String name;
+class Batsman extends Cricketer {
     Integer age;
-    private int matches;
     private int runs;
     private float avg;
     private float sr;
@@ -13,10 +11,9 @@ class Batsman {
 
     // Constructor with only name parameter
     public Batsman(String name,int age) {
-        this.name = name;
+        super(name);
         // this.age = new Integer(age);
         this.age = Integer.valueOf(age);
-        this.matches = 0;
         this.runs = 0;
         this.avg = 0.0f;
         this.sr = 0.0f;
@@ -25,9 +22,8 @@ class Batsman {
 
     // Constructor with name, matches, runs parameters
     public Batsman(String name,int age, int matches, int runs) {
-        this.name = name;
+        super(name,matches);        
         this.age = Integer.valueOf(age);
-        this.matches = matches;
         this.runs = runs;
         calculateAvg();
         calculateSR();
@@ -37,9 +33,8 @@ class Batsman {
     // Constructor with name, matches, runs, avg, sr parameters
     public Batsman(String name,int age, int matches, int runs, float avg, float sr) 
     {
-        this.name = name;
+        super(name,matches);
         this.age = Integer.valueOf(age);
-        this.matches = matches;
         this.runs = runs;
         this.avg = avg;
         this.sr = sr;
@@ -48,9 +43,8 @@ class Batsman {
 
     // Constructor with object argument
     public Batsman(Batsman other) {
-        this.name = other.name;
+        super(other);
         this.age = other.age;
-        this.matches = other.matches;
         this.runs = other.runs;
         this.avg = other.avg;
         this.sr = other.sr;

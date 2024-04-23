@@ -1,9 +1,7 @@
 package cricketgame;
 
-class Bowler {
-    private String name;
+class Bowler extends Cricketer {
     Integer age;
-    private int matches;
     private float overs;
     private int runs;
     private int wickets;
@@ -14,9 +12,8 @@ class Bowler {
 
     // Constructor with only name parameter
     public Bowler(String name,int age) {
-        this.name = name;
+        super(name);
         this.age = Integer.valueOf(age);
-        this.matches = 0;
         this.overs = 0.0f;
         this.runs = 0;
         this.wickets = 0;
@@ -26,9 +23,8 @@ class Bowler {
 
     // Constructor with name, matches, overs parameters
     public Bowler(String name,int age, int matches, float overs) {
-        this.name = name;
+        super(name,matches);
         this.age = Integer.valueOf(age);
-        this.matches = matches;
         this.overs = overs;
         calculateEconomy();
         totalBowlers++;
@@ -36,9 +32,8 @@ class Bowler {
 
     // Constructor with all parameters
     public Bowler(String name,int age, int matches, float overs, int runs, int wickets, float economy) {
-        this.name = name;
+        super(name,matches);
         this.age = Integer.valueOf(age);
-        this.matches = matches;
         this.overs = overs;
         this.runs = runs;
         this.wickets = wickets;
@@ -47,9 +42,8 @@ class Bowler {
     }
 
     public Bowler(Bowler other) {
-        this.name = other.name;
+        super(name);
         this.age = other.age;
-        this.matches = other.matches;
         this.overs = other.overs;
         this.runs = other.runs;
         this.wickets = other.wickets;
