@@ -1,6 +1,7 @@
 package cricketgame;
 
 class Batsman extends Cricketer {
+    // we implement encapsulation by making the instance variables private, and providing public methods (getters and setters) to access and modify these variables.
     Integer age;
     private int runs;
     private float avg;
@@ -63,6 +64,18 @@ class Batsman extends Cricketer {
         if (runs > 0) {
             sr = runs / (float) matches;
         }
+    }
+
+    //illustrating returning of object from a public static method
+    // Method to create and return a default Batsman object
+    public static Batsman createDefaultBatsman() {
+        return new Batsman("Default Batsman", 25, 0, 0, 0.0f, 0.0f);
+    }
+
+    // Override toString from our parent class (it was already overriden once in Cricketer class) method to provide custom string representation
+    @Override
+    public String toString() {
+        return "Batsman: " + this.name + ", Runs: " + this.runs;
     }
 
     // Getter methods

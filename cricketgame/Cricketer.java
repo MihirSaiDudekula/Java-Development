@@ -22,4 +22,11 @@ public class Cricketer {
     }
 
     // Getter and setter methods for name and matches...
+
+
+    // Override toString from our parent class (Object class) method to provide custom string representation
+    @Override
+    public String toString() {
+        return "Player: " + this.name + ", Matches: " + this.matches;
+    }
 }
