@@ -1,6 +1,6 @@
 package cricketgame;
 
-public class Bat extends CricketEquipment implements Strokeable, Swingable {
+public class Bat extends Equipment implements Strokeable, Swingable {
     //multiple inheritance using interfaces
     private int weight;
 

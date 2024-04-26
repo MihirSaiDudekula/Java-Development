@@ -1,7 +1,7 @@
 // Ball.java
 package cricketgame;
 
-public class Ball extends CricketEquipment implements Bounceable, Swingable {
+public class Ball extends Equipment implements Bounceable, Swingable {
     //multiple inheritance using interfaces
     private String color;
 

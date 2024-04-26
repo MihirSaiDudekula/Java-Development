@@ -14,5 +14,5 @@ public abstract class Equipment {
 }
 // Equipment is an abstract class that serves as a base class for different types of cricket equipment.
 // It contains a single field brand, which represents the brand of the equipment.
-// The class has a constructor CricketEquipment(String brand) to initialize the brand field.
+// The class has a constructor Equipment(String brand) to initialize the brand field.
 // It declares an abstract method display(), which will be implemented by concrete subclasses to display specific details of each type of equipment.
