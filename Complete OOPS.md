@@ -602,7 +602,168 @@ A garbage collector is a part of the runtime system that is responsible for perf
 - **Non-deterministic**: Garbage collection is non-deterministic, meaning the timing and frequency of garbage collection cycles are not predictable, which can lead to unpredictable performance.
 
 - **Fragmentation**: Some garbage collection algorithms may lead to heap fragmentation, where memory becomes fragmented over time, reducing available contiguous memory.
+# System class
+In Java, the **`System`** class is part of the `java.lang` package and provides access to system-level resources and functionality that are generally not available to regular Java programs. It's a utility class that includes methods for interacting with the underlying operating system. Here’s a simple breakdown of its significance:
 
+1. **Input and Output**: 
+   - `System` allows access to **standard input** (keyboard) and **standard output** (console). For example, `System.out` is a built-in object for printing data to the console.
+   - `System.in` provides access to standard input, allowing you to read data from the keyboard.
+
+   ```java
+   System.out.println("Hello, World!");
+   ```
+
+2. **Environment Information**: 
+   - `System` gives you methods to get system properties like the Java version, operating system name, file separator, and more.
+   - For example, you can get the user's current directory with `System.getProperty("user.dir")`.
+
+3. **System Time**:
+   - It includes methods like `System.currentTimeMillis()` that return the current time in milliseconds. This is useful for measuring performance or tracking time in applications.
+
+4. **System Exit**:
+   - The `System.exit()` method allows you to exit a Java program explicitly, terminating the application with a specific status code.
+   - For example, `System.exit(0)` means the program is terminating successfully, while a non-zero code often indicates an error or abnormal termination.
+
+5. **Memory Management**:
+   - `System.gc()` is a method that suggests the Java Virtual Machine (JVM) to perform garbage collection, although the JVM does not guarantee it will happen immediately.
+
+In short, the **`System`** class provides important utility functions for interacting with the operating system, managing input/output, handling system properties, and working with time and memory.
+
+### Understanding `System.in` and `System.out`
+
+In Java, **`System.in`** and **`System.out`** are **streams** that represent the standard input and output of the program:
+
+- **`System.in`**: This is a **InputStream** object that represents the **standard input**—usually the keyboard. It allows your program to read data entered by the user.
+- **`System.out`**: This is a **PrintStream** object that represents the **standard output**—usually the console (screen). It allows your program to display data to the user.
+
+#### How Streams Work:
+A **stream** is a sequence of data elements (like bytes or characters) that can be read from or written to a source/destination. There are two types of streams:
+
+1. **Input Streams**: Allow data to be read from a source (like keyboard input or a file).
+2. **Output Streams**: Allow data to be written to a destination (like the console or a file).
+
+In simple terms, **streams** act as **conduits** that carry data from one place to another. The data could flow from an input (like the keyboard) into the program or from the program to an output (like the screen).
+
+### Streams and Buffers
+
+- **Stream**: A stream is a continuous flow of data. It can be either an **input stream** (for reading) or an **output stream** (for writing).
+  
+- **Buffer**: A buffer is a temporary storage area used to hold data before it is read or written. It helps to manage the flow of data more efficiently. For example, when reading from a file or the console, data might be read into a buffer first, and then your program can process it in chunks rather than one byte at a time.
+
+### Input and Output Process
+
+#### 1. **Input (Reading from `System.in`)**:
+   - **`System.in`** is an input stream that allows the program to read data (usually from the user typing on the keyboard). Typically, you would use a **Scanner** or **BufferedReader** to make reading from `System.in` easier.
+   
+   Example (Reading a line of text from the user):
+   ```java
+   import java.util.Scanner;
+
+   public class InputExample {
+       public static void main(String[] args) {
+           // Create a Scanner object to read from System.in (keyboard)
+           Scanner scanner = new Scanner(System.in);
+
+           // Ask the user for input
+           System.out.println("Please enter your name:");
+
+           // Read the user's input
+           String name = scanner.nextLine();
+
+           // Output the user's input
+           System.out.println("Hello, " + name + "!");
+       }
+   }
+   ```
+   - **Explanation**: In this example, `System.in` is used indirectly through the `Scanner` class. The program waits for the user to type something, which it reads from `System.in` and stores in the `name` variable. After that, it outputs the name to the screen.
+
+#### 2. **Output (Writing to `System.out`)**:
+   - **`System.out`** is an output stream that writes data to the console (screen). Typically, you would use **`System.out.println()`** or **`System.out.print()`** to output text to the console.
+
+   Example (Printing text to the console):
+   ```java
+   public class OutputExample {
+       public static void main(String[] args) {
+           // Print a message to the console
+           System.out.println("Hello, World!");
+       }
+   }
+   ```
+   - **Explanation**: Here, `System.out` is used to display the message "Hello, World!" on the console. The `println()` method writes the string followed by a newline character.
+
+### How Does the Input/Output Process Work?
+
+1. **Input Process**:
+   - When you type something on the keyboard, the data is sent to the computer's **standard input stream** (which is represented by `System.in`).
+   - The program can then **read** this data. For example, using a `Scanner`, you can read a line of text, a number, etc.
+   - Once the data is read, you can use it in your program, such as displaying it back or performing calculations.
+
+2. **Output Process**:
+   - When you want to display something to the user, the program sends data to the **standard output stream** (`System.out`).
+   - The program writes this data, typically using `println()` or `print()`, and the data is displayed on the screen or console.
+
+### Example of Both Input and Output Together:
+
+```java
+import java.util.Scanner;
+
+public class InputOutputExample {
+    public static void main(String[] args) {
+        // Create a Scanner object to read from System.in (keyboard)
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user for their age
+        System.out.print("Please enter your age: ");
+
+        // Read the age input from the user
+        int age = scanner.nextInt();
+
+        // Output the result to the console
+        System.out.println("You are " + age + " years old.");
+    }
+}
+```
+
+- **Input**: The program asks for the user's age and reads it from the keyboard using `System.in` (via `Scanner`).
+- **Output**: The program prints the age entered by the user back to the console using `System.out`.
+
+### Stream and Buffer Example in Files
+
+Sometimes, instead of just interacting with the console, you may want to read from or write to a file. Java provides various classes for reading and writing with buffers, like `BufferedReader` and `BufferedWriter`.
+
+```java
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class FileExample {
+    public static void main(String[] args) throws IOException {
+        // Reading from a file using BufferedReader
+        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+        String line = reader.readLine();
+        System.out.println("Read from file: " + line);
+        reader.close();
+
+        // Writing to a file using BufferedWriter
+        BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+        writer.write("This is a test message.");
+        writer.close();
+    }
+}
+```
+
+- **BufferedReader** reads data from a file into a buffer (a temporary storage area), which is then read by your program in chunks.
+- **BufferedWriter** writes data into a buffer, which is then written to a file in chunks for efficiency.
+
+### Summary of Key Points:
+- **Streams** are used to transfer data between the program and external resources (like the console, files, or the network).
+- **`System.in`** and **`System.out`** are streams for reading and writing data from and to the console.
+- A **buffer** temporarily stores data before it's read or written to optimize performance, especially when handling large amounts of data.
+- **Input/Output** operations allow the program to communicate with the user, either by reading their input or displaying results on the console.
+
+In a nutshell, streams are the channels through which data flows, and buffers help manage and optimize this data flow, especially when handling large amounts of input or output.
 # Singleton classes
 
 Singleton pattern is a design pattern used to ensure that a class has only one instance and provides a global point of access to that instance. This is useful when exactly one object is needed to coordinate actions across the system.
