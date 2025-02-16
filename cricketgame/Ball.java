@@ -5,19 +5,19 @@ public class Ball extends Equipment implements Bounceable, Swingable {
     //multiple inheritance using interfaces
     private String color;
 
-    public Ball(String brand, String color) {
-        super(brand);
+    public Ball(String br, String color) {
+        super(br);
         this.color = color;
     }
 
     @Override
     public void display() {
-        System.out.println("Brand: " + brand + ", Type: Ball, Color: " + color);
+        System.out.println("Brand: " + br + ", Type: Ball, Color: " + color);
     }
 
     @Override
     public void bounce() {
-        System.out.println("Bouncing the ball.");
+        System.out.println("Bouncing  ball.");
     }
 
     @Override
